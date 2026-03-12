@@ -1,1 +1,9 @@
 node_modules/
+dest/
+
+# Logs
+*.log
+npm-debug.log*
+
+# macOS
+.DS_Store
