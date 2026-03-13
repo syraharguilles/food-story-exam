@@ -1,0 +1,19 @@
+/* OpenSans - 300 */
+@font-face {
+    font-family: 'OpenSans-Light';
+    font-display: swap;
+    font-style: normal;
+    font-weight: 300;
+    src: url('../fonts/OpenSans-Light.ttf') format('truetype');
+    unicode-range: U+000-5FF;
+}
+
+/* OpenSans - 700 */
+@font-face {
+    font-family: 'OpenSans-Bold';
+    font-display: swap;
+    font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/OpenSans-Bold.ttf') format('truetype');
+    unicode-range: U+000-5FF;
+}

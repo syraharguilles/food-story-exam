@@ -1,0 +1,86 @@
+@use "../common/helper" as *;
+@use "../common/config" as *;
+
+.story-block {
+    &__container {
+        display: flex;
+        align-items: start;
+        flex-direction: row;
+        gap: $spacer-30;
+
+        @include breakpoint(md, max) {
+            flex-direction: column;
+        }
+    }
+
+    &__media-grid { 
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        grid-template-rows: 1fr 1fr;
+        gap: $spacer-10;
+    }
+
+    &__figure {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        &--row-span-2 {
+            grid-row: span 2;
+        }
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    &__content {
+        width: 100%;
+        max-width: 100%;
+
+        @include breakpoint(lg, min) {
+            max-width: 362px;
+        }
+    }
+
+    &__title-wrap {
+        border-bottom: 1px solid $color--white;
+        padding-bottom: $spacer-30;
+        margin-bottom: $spacer-30;
+        display: inline-block;
+    }
+
+    &__title {
+        color: $color--white;
+        font-family: $open-sans-light;
+        font-weight: $font-weight--light;
+        text-transform: uppercase;
+        margin: $spacer-0;
+    }
+
+    &__subtitle {
+        color: $color--red;
+        font-family: $open-sans-bold;
+        font-weight: $font-weight--bold;
+        padding-bottom: $spacer-10;
+    }
+
+    &__text {
+        color: $color--white;
+        font-family: $open-sans-light;
+        font-weight: $font-weight--light;
+        padding-bottom: $spacer-30;
+    }
+
+    &__text--padding-0 {
+        padding-bottom: $spacer-0;
+    }
+
+    &__text--bold {
+        font-family: $open-sans-bold;
+        font-weight: $font-weight--bold;
+    }
+}

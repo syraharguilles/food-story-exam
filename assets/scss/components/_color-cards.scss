@@ -1,0 +1,78 @@
+@use "../common/helper" as *;
+@use "../common/config" as *;
+
+.color-cards {
+    &__outer-wrapper {
+        display: flex;
+        justify-content: center;
+    }
+
+    &__title-wrap {
+        border-bottom: 1px solid $color--white;
+        padding-bottom: $spacer-30;
+        margin-bottom: $spacer-30;
+        display: inline-block;
+    }
+
+    &__title {
+        color: $color--white;
+        font-family: $open-sans-light;
+        font-size: $spacer-30;
+        font-weight: $font-weight--light;
+        text-transform: uppercase;
+        margin: $spacer-0;
+    }
+
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        align-items: start;
+        gap: $spacer-20;
+
+        @include breakpoint(md, min) {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: $spacer-10;
+        }
+    }
+
+    &__item {
+        &:first-child .color-cards__item-title {
+            text-transform: uppercase;
+        }
+
+        &-title {
+            color: $color--white;
+            font-family: $open-sans-bold;
+            font-weight: $font-weight--bold;
+            margin-top: $spacer-30;
+            margin-bottom: $spacer-10;
+            text-align: center;
+        }
+
+        &-link {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        &-link:hover,
+        &-link:focus-visible {
+            text-decoration: underline;
+        }
+
+        &-text {
+            color: $color--white;
+            font-family: $open-sans-light;
+            text-align: center;
+        }
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        border: 1px solid $color--dark;
+        outline: 2px solid $color--dark;
+        outline-offset: -2px;
+    }
+}

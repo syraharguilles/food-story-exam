@@ -1,0 +1,46 @@
+// COLORS
+$color--white: #fff;
+$color--red: #ec4964;
+$color--dark: #0e1414;
+
+//FONTS
+$open-sans-light: 'OpenSans-Light', Arial, Helvetica, sans-serif;
+$open-sans-bold: 'OpenSans-Bold', Arial, Helvetica, sans-serif;
+
+
+$font-weight--light: 300;
+$font-weight--bold: 700;
+
+// SPACERS
+$spacer-0: 0;
+$spacer-10: 10px;
+$spacer-20: 20px;
+$spacer-30: 30px;
+
+h1 {
+  font-size: 30px; 
+  line-height: 1.1;
+  letter-spacing: 1.5px;
+}
+
+h2 {
+  font-size: 30px; 
+  line-height: 1.1;
+  letter-spacing: 1.5px;
+}
+
+h3 {
+  font-size: 21px; 
+  line-height: 1.1;
+}
+
+p {
+  font-size: 21px;
+  line-height: 1.4;
+}
+
+span {
+  font-size: 15px;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
