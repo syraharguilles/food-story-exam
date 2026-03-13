@@ -6,7 +6,7 @@ module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
 
   return {
-    entry: ['./assets/js/app.js', './assets/css/style.scss'],
+    entry: ['./assets/js/app.js', './assets/scss/style.scss'],
     output: {
       filename: 'js/main.js',
       path: path.resolve(__dirname, 'dest'),

@@ -1,0 +1,32 @@
+@use "sass:map";
+
+$breakpoints: (
+    sm: 576px,
+    md: 768px,
+    lg: 1024px,
+    xl: 1280px
+);
+
+@function bp($name) {
+    @if map.has-key($breakpoints, $name) {
+        @return map.get($breakpoints, $name);
+    }
+
+    @error "Unknown breakpoint `#{$name}`. Available: #{map.keys($breakpoints)}";
+}
+
+@mixin breakpoint($name, $type: max) {
+    $value: bp($name);
+
+    @if $type == min {
+        @media (min-width: $value) {
+            @content;
+        }
+    } @else if $type == max {
+        @media (max-width: $value) {
+            @content;
+        }
+    } @else {
+        @error "Breakpoint type must be `min` or `max`.";
+    }
+}

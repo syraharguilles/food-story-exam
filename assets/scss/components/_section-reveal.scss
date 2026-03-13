@@ -1,0 +1,66 @@
+@keyframes slide-down {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+body.js-ready .story-block.js-section-reveal .story-block__media-grid,
+body.js-ready .story-block.js-section-reveal .story-block__content > *,
+body.js-ready .color-cards.js-section-reveal .color-cards__outer-wrapper,
+body.js-ready .color-cards.js-section-reveal .color-cards__item {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.story-block.js-section-reveal.is-visible .story-block__media-grid {
+    animation: slide-down 1s forwards;
+}
+
+.story-block.js-section-reveal.is-visible .story-block__content > *:nth-child(1) {
+    animation: slide-down 1.05s forwards;
+}
+
+.story-block.js-section-reveal.is-visible .story-block__content > *:nth-child(2) {
+    animation: slide-down 1.15s forwards;
+}
+
+.story-block.js-section-reveal.is-visible .story-block__content > *:nth-child(3) {
+    animation: slide-down 1.25s forwards;
+}
+
+.story-block.js-section-reveal.is-visible .story-block__content > *:nth-child(4) {
+    animation: slide-down 1.35s forwards;
+}
+
+.color-cards.js-section-reveal.is-visible .color-cards__outer-wrapper {
+    animation: slide-down 1s forwards;
+}
+
+.color-cards.js-section-reveal.is-visible .color-cards__item:nth-child(1) {
+    animation: slide-down 1.1s forwards;
+}
+
+.color-cards.js-section-reveal.is-visible .color-cards__item:nth-child(2) {
+    animation: slide-down 1.2s forwards;
+}
+
+.color-cards.js-section-reveal.is-visible .color-cards__item:nth-child(3) {
+    animation: slide-down 1.3s forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.js-ready .story-block.js-section-reveal .story-block__media-grid,
+    body.js-ready .story-block.js-section-reveal .story-block__content > *,
+    body.js-ready .color-cards.js-section-reveal .color-cards__outer-wrapper,
+    body.js-ready .color-cards.js-section-reveal .color-cards__item {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
+}

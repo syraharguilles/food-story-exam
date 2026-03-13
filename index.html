@@ -4,95 +4,29 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Basic Page</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <meta name="description" content="Responsive food story and color cards layout with accessible image modal interactions." />
+    <meta name="robots" content="index,follow" />
+    <meta property="og:title" content="Basic Page" />
+    <meta property="og:description" content="Responsive food story and color cards layout with accessible image modal interactions." />
 	<link rel="stylesheet" href="dest/css/style.css" />
 </head>
 <body>
 	<main class="page">
-        <section class="story-block">
+        <section class="story-block js-section-reveal">
             <div class="container story-block__container">
-                <div class="story-block__media-grid">
-                    <figure class="story-block__figure story-block__figure--big">
-                        <img
-                            class="story-block__image"
-                            src="./assets/images/left.jpg"
-                            srcset="./assets/images/left.jpg 1x, ./assets/images/left@2x.jpg 2x, ./assets/images/left@3x.jpg 3x"
-                            alt="Image 1"
-                        >
-                    </figure>
-                    <figure class="story-block__figure">
-                        <img
-                            class="story-block__image"
-                            src="./assets/images/right-top.jpg"
-                            srcset="./assets/images/right-top.jpg 1x, ./assets/images/right-top@2x.jpg 2x, ./assets/images/right-top@3x.jpg 3x"
-                            alt="Image 2"
-                        >
-                    </figure>
-                    <figure class="story-block__figure">
-                        <img
-                            class="story-block__image"
-                            src="./assets/images/right-bottom.jpg"
-                            srcset="./assets/images/right-bottom.jpg 1x, ./assets/images/right-bottom@2x.jpg 2x, ./assets/images/right-bottom@3x.jpg 3x"
-                            alt="Image 3"
-                        >
-                    </figure>
-                </div>
-                <div class="story-block__content">
-                    <div class="story-block__title-wrap">
-                        <h3 class="story-block__title">What Does Cooking Mean?</h3>
-                    </div>
-                    <p class="story-block__text">Is it simply applying heat to a food product? A way of making certain food safe to eat? Or a way to create flavour and make food more appealing? This is just part of what Hervé This, the father of molecular gastronomy, has dedicated his life to finding out. We spoke to him to find out what his experiments have told him. And in the process even discovered the secret to cooking the perfect egg...</p>
-                    
-                    <h4 class="story-block__subtitle">The Perfect Egg</h4>
-                    <p class="story-block__text story-block__text--highlight"><strong>Keep water between 67 and 68°C for a flavourful, tender yolk</strong></p>
-                </div>
+                <div class="story-block__media-grid js-story-media-grid"></div>
+                <div class="story-block__content js-story-content"></div>
             </div>
         </section><!-- end of story-block -->
-        <section class="color-cards">
+        <section class="color-cards js-section-reveal">
             <div class="container color-cards__container text-center">
-                <div class="color-cards__title-wrap">
-                    <h3 class="color-cards__title">Taste the Colours</h3>
-                </div>
-                <div class="color-cards__list">
-                    <div class="color-cards__item">
-                        <figure class="color-cards__figure">
-                            <img
-                                class="color-cards__image"
-                                src="./assets/images/tight-top-green.jpg"
-                                srcset="./assets/images/tight-top-green.jpg 1x, ./assets/images/tight-top-green@2x.jpg 2x, ./assets/images/tight-top-green@3x.jpg 3x"
-                                alt="Green Spoon"
-                            >
-                        </figure>
-                        <h3 class="color-cards__item-title">Red</h3>
-                        <p class="color-cards__item-text">Red foods remind us of berries and soft fruits, so we anticipate a sweet taste.</p>
-                    </div>
-                    <div class="color-cards__item">
-                        <figure class="color-cards__figure">
-                            <img
-                                class="color-cards__image"
-                                src="./assets/images/tight-top-red.jpg"
-                                srcset="./assets/images/tight-top-red.jpg 1x, ./assets/images/tight-top-red@2x.jpg 2x, ./assets/images/tight-top-red@3x.jpg 3x"
-                                alt="Red Spoon"
-                            >
-                        </figure>
-                        <h3 class="color-cards__item-title">Green</h3>
-                        <p class="color-cards__item-text">Fresh, zingy green colours are reminiscent of unripe fruit, promising sour or acid flavours</p>
-                    </div>
-                    <div class="color-cards__item">
-                        <figure class="color-cards__figure">
-                            <img
-                                class="color-cards__image"
-                                src="./assets/images/tight-top-white.jpg"
-                                srcset="./assets/images/tight-top-white.jpg 1x, ./assets/images/tight-top-white@2x.jpg 2x, ./assets/images/tight-top-white@3x.jpg 3x"
-                                alt="White Spoon"
-                            > 
-                        </figure>
-                        <h3 class="color-cards__item-title">White</h3>
-                        <p class="color-cards__item-text">White foods evoke memories of salt and salty flavours, driving the expectation of a savoury treat.</p>
+                <div class="color-cards__outer-wrapper">
+                    <div class="color-cards__title-wrap">
+                        <h2 class="color-cards__title js-cards-title"></h2>
                     </div>
                 </div>
+                
+                <div class="color-cards__list js-cards-list"></div>
             </div>
         </section><!-- end of color-cards -->
 	</main>
