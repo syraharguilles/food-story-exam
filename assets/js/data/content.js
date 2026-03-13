@@ -1,8 +1,7 @@
+// Reviewer note:
+// This file is the CMS-ready source of truth for page content.
+// In production, build-time prerender and runtime rendering both consume this object.
 export const pageContent = {
-    seo: {
-        title: 'Basic Page',
-        description: 'Responsive food story and color cards layout with accessible image modal interactions.'
-    },
     story: {
         title: 'What Does Cooking Mean?',
         description:

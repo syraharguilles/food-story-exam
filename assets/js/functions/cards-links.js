@@ -1,5 +1,5 @@
 export const cardsLinkLogger = () => {
-    const cardsBlock = document.querySelector('.color-cards__list');
+    const cardsBlock = document.querySelector('.js-cards-list');
 
     if (!cardsBlock) {
         return;
@@ -7,7 +7,7 @@ export const cardsLinkLogger = () => {
 
     // Event delegation keeps one listener for all links in this cards block.
     cardsBlock.addEventListener('click', (event) => {
-        const clickedLink = event.target.closest('.color-cards__item-link');
+        const clickedLink = event.target.closest('.js-cards-link');
 
         if (!clickedLink || !cardsBlock.contains(clickedLink)) {
             return;

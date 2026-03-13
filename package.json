@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "webpack --mode development --watch",
-    "build": "webpack --mode production"
+    "prerender": "node scripts/prerender-index.cjs",
+    "build": "npm run prerender && webpack --mode production"
   },
   "devDependencies": {
     "@babel/core": "^7.28.0",

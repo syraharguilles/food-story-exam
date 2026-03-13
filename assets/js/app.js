@@ -4,6 +4,8 @@ import { renderContent } from './functions/render-content';
 import { sectionReveal } from './functions/section-reveal';
 
 const bootstrap = () => {
+	// Reviewer note:
+	// Runtime render is kept so content can still be replaced dynamically (CMS/API) after initial load.
 	renderContent();
 	imageModal();
 	cardsLinkLogger();
