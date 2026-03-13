@@ -12,7 +12,7 @@ A static, production-ready web page built with Webpack + SCSS, with CMS-ready co
 ## Project Structure
 
 ```text
-exam123/
+[folder-name]/
 ├─ index.html
 ├─ package.json
 ├─ webpack.config.js
@@ -85,12 +85,11 @@ This rebuilds assets on file changes (watch mode).
 
 When `dest/js/main.js` loads, `assets/js/app.js` runs on `DOMContentLoaded`:
 
-1. `renderContent()`
-   - Re-renders gallery/cards from `content.js`
-   - Applies fallback UI/logging if containers or data are missing
+1. Optional: `renderContent()`
+   - Currently commented out in `assets/js/app.js`
+   - Can be enabled to re-render sections from `assets/js/data/content.js` at runtime
 2. `imageModal()`
    - Enables modal only for gallery images
-   - Adds focus trap + background inert handling for accessibility
 3. `cardsLinkLogger()`
    - Uses delegated click listener on cards links
    - Logs click details and preserves secure link behavior
@@ -106,3 +105,22 @@ This project is CMS-ready because content is modular and centralized:
 - Re-run `npm run build` to regenerate static HTML and bundles
 
 No layout/component rewrite is needed to change content.
+
+### How to test CMS readiness
+
+1. Open `assets/js/app.js` and make sure `renderContent()` is enabled.
+   - If `renderContent` import/call is commented, uncomment it.
+2. Edit values in `assets/js/data/content.js` (title, text, links, or image paths).
+3. Run one of the following:
+
+```bash
+npm run dev
+```
+
+or
+
+```bash
+npm run build
+```
+
+4. Reload the page and verify content updates are reflected in rendered output.

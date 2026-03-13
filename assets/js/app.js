@@ -4,9 +4,10 @@ import { renderContent } from './functions/render-content';
 import { sectionReveal } from './functions/section-reveal';
 
 const bootstrap = () => {
-	// Reviewer note:
-	// Runtime render is kept so content can still be replaced dynamically (CMS/API) after initial load.
-	renderContent();
+	// Content rendering is currently disabled.
+	// Uncomment the line below to enable dynamic rendering from the content.js data object.
+	// This allows for runtime updates and is also used in development. In production, prerendering populates the HTML.
+	// renderContent();
 	imageModal();
 	cardsLinkLogger();
 	sectionReveal();
