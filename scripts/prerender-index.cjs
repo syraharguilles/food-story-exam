@@ -48,6 +48,7 @@ const createStoryFigureMarkup = (imageData, index) => {
                             srcset="${escapeHtml(imageData?.srcset || '')}"
                             alt="${escapeHtml(imageData?.alt || '')}"
                         >
+                        <figcaption class="gallery-block__caption">Click me</figcaption>
                     </figure>`;
 };
 
@@ -78,21 +79,22 @@ const createCardItemMarkup = (item = {}) => {
 
     return `
                     <div class="cards-block__item">
-                        <figure class="cards-block__figure">
-                            <img
-                                class="cards-block__image"
-                                src="${escapeHtml(item.image?.src || '')}"
-                                srcset="${escapeHtml(item.image?.srcset || '')}"
-                                alt="${escapeHtml(item.image?.alt || '')}"
-                            >
-                        </figure>
-                        <h3 class="cards-block__item-title">
-                            <a
-                                class="cards-block__item-link js-cards-link"
-                                href="${escapeHtml(href)}"
-                                target="${escapeHtml(target)}"${relAttribute}
-                            >${escapeHtml(item.link?.label || item.title || '')}</a>
-                        </h3>
+                        <a
+                            class="cards-block__item-link cards-block__item-link--card js-cards-link"
+                            href="${escapeHtml(href)}"
+                            target="${escapeHtml(target)}"${relAttribute}
+                        >
+                            <figure class="cards-block__figure">
+                                <img
+                                    class="cards-block__image"
+                                    src="${escapeHtml(item.image?.src || '')}"
+                                    srcset="${escapeHtml(item.image?.srcset || '')}"
+                                    alt="${escapeHtml(item.image?.alt || '')}"
+                                >
+                                <figcaption class="cards-block__caption">Click me</figcaption>
+                            </figure>
+                            <h3 class="cards-block__item-title">${escapeHtml(item.link?.label || item.title || '')}</h3>
+                        </a>
                         <p class="cards-block__item-text">${escapeHtml(item.text || '')}</p>
                     </div>`;
 };

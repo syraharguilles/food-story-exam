@@ -13,28 +13,31 @@ export const cardsLinkLogger = () => {
             return;
         }
 
-        const href = clickedLink.getAttribute('href');
-
-        if (!href) {
-            return;
-        }
+        const href = clickedLink.getAttribute('href') || '#';
 
         const target = clickedLink.getAttribute('target') || '_self';
+        const linkLabel =
+            clickedLink.textContent?.trim() ||
+            clickedLink.getAttribute('aria-label') ||
+            clickedLink.querySelector('img')?.getAttribute('alt') ||
+            '';
+        const linkedImage = clickedLink.querySelector('img');
+        const image = linkedImage
+            ? {
+                  alt: linkedImage.getAttribute('alt') || '',
+                  src: linkedImage.getAttribute('src') || '',
+                  srcset: linkedImage.getAttribute('srcset') || ''
+              }
+            : null;
 
         console.log('[Cards Block] link clicked', {
-            text: clickedLink.textContent?.trim() || '',
-            href: clickedLink.href,
-            target
+            text: linkLabel,
+            href,
+            target,
+            image
         });
 
-        // Delay navigation until after logging so the click data is captured.
+        // Keep anchors as semantic click targets for logging only.
         event.preventDefault();
-
-        if (target === '_blank') {
-            window.open(href, '_blank', 'noopener,noreferrer');
-            return;
-        }
-
-        window.location.assign(href);
     });
 };
