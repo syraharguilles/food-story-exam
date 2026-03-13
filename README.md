@@ -12,7 +12,7 @@ A static, production-ready web page built with Webpack + SCSS, with CMS-ready co
 ## Project Structure
 
 ```text
-exam123/
+[folder-name]/
 ├─ index.html
 ├─ package.json
 ├─ webpack.config.js
