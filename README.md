@@ -92,7 +92,7 @@ When `dest/js/main.js` loads, `assets/js/app.js` runs on `DOMContentLoaded`:
    - Enables modal only for gallery images
 3. `cardsLinkLogger()`
    - Uses delegated click listener on cards links
-   - Logs click details and preserves secure link behavior
+   - Logs click details only (navigation is intentionally disabled)
 4. `sectionReveal()`
    - Reveals sections when in viewport (IntersectionObserver)
 5. Adds `js-ready` class to `<body>` to activate JS-dependent animations

@@ -17,20 +17,33 @@ body.is-image-modal-open {
     position: fixed;
     inset: 0;
     z-index: 1000;
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
 }
 
 .image-modal.is-open {
-    display: flex;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.3s ease;
 }
 
 .image-modal__backdrop {
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0.85);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.image-modal.is-open .image-modal__backdrop {
+    opacity: 1;
 }
 
 .image-modal__content {
@@ -38,6 +51,14 @@ body.is-image-modal-open {
     z-index: 1;
     max-width: min(92vw, 1100px);
     max-height: 90vh;
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.image-modal.is-open .image-modal__content {
+    opacity: 1;
+    transform: translateY(0) scale(1);
 }
 
 .image-modal__image {
@@ -64,4 +85,16 @@ body.is-image-modal-open {
 .image-modal__close:focus-visible {
     outline: 2px solid $color--red;
     outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .image-modal,
+    .image-modal__backdrop,
+    .image-modal__content {
+        transition: none;
+    }
+
+    .image-modal__content {
+        transform: none;
+    }
 }

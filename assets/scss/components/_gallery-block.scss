@@ -1,6 +1,16 @@
 @use "../common/helper" as *;
 @use "../common/config" as *;
 
+@keyframes gallery-block-flash {
+    0% {
+        opacity: 0.4;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
 .gallery-block {
     &__container {
         display: flex;
@@ -21,6 +31,7 @@
     }
 
     &__figure {
+        position: relative;
         width: 100%;
         height: 100%;
         overflow: hidden;
@@ -35,6 +46,33 @@
         height: 100%;
         object-fit: cover;
         display: block;
+    }
+
+    &__caption {
+        position: absolute;
+        left: $spacer-0;
+        right: $spacer-0;
+        bottom: $spacer-0;
+        padding: $spacer-10;
+        color: $color--dark;
+        background-color: $color--white;
+        text-align: center;
+        font-family: $open-sans-bold;
+        font-weight: $font-weight--bold;
+        transform: translate3d(0, 100%, 0);
+        transition: transform 0.35s;
+        pointer-events: none;
+    }
+
+    &__figure:hover &__caption,
+    &__figure:focus-within &__caption {
+        transform: translate3d(0, 0, 0);
+    }
+
+    &__figure:hover &__image,
+    &__figure:focus-within &__image {
+        opacity: 1;
+        animation: gallery-block-flash 1.5s;
     }
 
     &__content {
@@ -82,5 +120,16 @@
     &__text--bold {
         font-family: $open-sans-bold;
         font-weight: $font-weight--bold;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gallery-block__figure:hover .gallery-block__image,
+    .gallery-block__figure:focus-within .gallery-block__image {
+        animation: none;
+    }
+
+    .gallery-block__caption {
+        transition: none;
     }
 }

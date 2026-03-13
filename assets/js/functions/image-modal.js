@@ -35,10 +35,18 @@ export const imageModal = () => {
 
     const modal = getOrCreateModal();
     const modalImage = modal.querySelector('.js-image-modal-image');
-    const closeButton = modal.querySelector('.js-image-modal-close');
+    const closeButton = modal.querySelector('button.js-image-modal-close');
     const closeTargets = modal.querySelectorAll('.js-image-modal-close');
+    const closeAnimationDuration =
+        'matchMedia' in window && window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 300;
 
     let activeTrigger = null;
+    let closeTimeoutId = null;
+
+    const cleanupModalMedia = () => {
+        modalImage.removeAttribute('src');
+        modalImage.removeAttribute('alt');
+    };
 
     const closeModal = () => {
         if (!modal.classList.contains('is-open')) {
@@ -48,7 +56,15 @@ export const imageModal = () => {
         modal.classList.remove('is-open');
         modal.setAttribute('aria-hidden', 'true');
         document.body.classList.remove('is-image-modal-open');
-        modalImage.removeAttribute('src');
+
+        if (closeTimeoutId) {
+            window.clearTimeout(closeTimeoutId);
+        }
+
+        closeTimeoutId = window.setTimeout(() => {
+            cleanupModalMedia();
+            closeTimeoutId = null;
+        }, closeAnimationDuration);
 
         // Return focus to the original trigger for keyboard users.
         if (activeTrigger) {
@@ -62,6 +78,11 @@ export const imageModal = () => {
 
         if (!imageSource) {
             return;
+        }
+
+        if (closeTimeoutId) {
+            window.clearTimeout(closeTimeoutId);
+            closeTimeoutId = null;
         }
 
         activeTrigger = trigger;

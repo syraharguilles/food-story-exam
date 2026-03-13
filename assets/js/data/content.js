@@ -42,9 +42,8 @@ export const pageContent = {
                     alt: 'Red Glass Spoon'
                 },
                 link: {
-                    href: 'https://en.wikipedia.org/wiki/Red',
-                    target: '_blank',
-                    rel: 'noopener noreferrer',
+                    href: '#',
+                    target: '_self',
                     label: 'Red'
                 }
             },
@@ -58,9 +57,8 @@ export const pageContent = {
                     alt: 'Green Glass Spoon'
                 },
                 link: {
-                    href: 'https://en.wikipedia.org/wiki/Green',
-                    target: '_blank',
-                    rel: 'noopener noreferrer',
+                    href: '#',
+                    target: '_self',
                     label: 'Green'
                 }
             },
@@ -74,9 +72,8 @@ export const pageContent = {
                     alt: 'White Glass Spoon'
                 },
                 link: {
-                    href: 'https://en.wikipedia.org/wiki/White',
-                    target: '_blank',
-                    rel: 'noopener noreferrer',
+                    href: '#',
+                    target: '_self',
                     label: 'White'
                 }
             }
