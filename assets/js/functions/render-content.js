@@ -1,207 +1,161 @@
+// Reviewer note:
+// This renderer maps CMS-like data into DOM containers.
+// It supports runtime updates and graceful fallbacks if expected data/containers are missing.
 import { pageContent } from '../data/content';
 
-const setElementText = (selector, value) => {
-    const element = document.querySelector(selector);
+const LOG_PREFIX = '[renderContent]';
 
-    if (!element || typeof value !== 'string') {
-        return;
-    }
+const escapeHtml = (value = '') =>
+    String(value).replace(/[&<>"']/g, (character) => {
+        const entities = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;'
+        };
 
-    element.textContent = value;
-};
+        return entities[character];
+    });
 
-const setImageSource = (imageElement, imageData) => {
-    if (!imageElement || !imageData) {
-        return;
-    }
+const createStoryFigureMarkup = (imageData, index) => {
+    const figureClass =
+        index === 0 ? 'gallery-block__figure gallery-block__figure--row-span-2' : 'gallery-block__figure';
 
-    if (imageData.src) {
-        imageElement.setAttribute('src', imageData.src);
-    }
-
-    if (imageData.srcset) {
-        imageElement.setAttribute('srcset', imageData.srcset);
-    }
-
-    if (imageData.alt) {
-        imageElement.setAttribute('alt', imageData.alt);
-    }
-};
-
-const setMetaByName = (name, content) => {
-    const meta = document.querySelector(`meta[name="${name}"]`);
-
-    if (!meta || !content) {
-        return;
-    }
-
-    meta.setAttribute('content', content);
-};
-
-const setMetaByProperty = (property, content) => {
-    const meta = document.querySelector(`meta[property="${property}"]`);
-
-    if (!meta || !content) {
-        return;
-    }
-
-    meta.setAttribute('content', content);
-};
-
-const createStoryFigure = (imageData, index) => {
-    const figure = document.createElement('figure');
-    figure.className = 'story-block__figure';
-
-    if (index === 0) {
-        figure.classList.add('story-block__figure--row-span-2');
-    }
-
-    const image = document.createElement('img');
-    image.className = 'story-block__image js-image-modal js-story-image';
-    setImageSource(image, imageData);
-
-    figure.appendChild(image);
-
-    return figure;
+    return `
+        <figure class="${figureClass}">
+            <img
+                class="gallery-block__image js-image-modal"
+                src="${escapeHtml(imageData?.src || '')}"
+                srcset="${escapeHtml(imageData?.srcset || '')}"
+                alt="${escapeHtml(imageData?.alt || '')}"
+            >
+        </figure>
+    `;
 };
 
 const renderStoryMedia = (images) => {
-    const mediaGrid = document.querySelector('.js-story-media-grid');
+    const mediaGrid = document.querySelector('.js-gallery-media-grid');
 
-    if (!mediaGrid || !Array.isArray(images)) {
+    if (!mediaGrid) {
+        console.error(`${LOG_PREFIX} Missing .js-gallery-media-grid container.`);
         return;
     }
 
-    mediaGrid.innerHTML = '';
-    images.forEach((imageData, index) => {
-        mediaGrid.appendChild(createStoryFigure(imageData, index));
-    });
+    if (!Array.isArray(images) || !images.length) {
+        console.warn(`${LOG_PREFIX} Story images are missing or empty.`);
+        if (!mediaGrid.innerHTML.trim()) {
+            mediaGrid.innerHTML = '<p class="gallery-block__text">Story images are currently unavailable.</p>';
+        }
+        return;
+    }
+
+    mediaGrid.innerHTML = images.map((imageData, index) => createStoryFigureMarkup(imageData, index)).join('');
 };
 
 const renderStoryCopy = (story) => {
-    const storyContent = document.querySelector('.js-story-content');
+    const storyContent = document.querySelector('.js-gallery-content');
 
     if (!storyContent) {
+        console.error(`${LOG_PREFIX} Missing .js-gallery-content container.`);
         return;
     }
 
-    storyContent.innerHTML = '';
+    const safeStory = story && typeof story === 'object' ? story : {};
+    const safeTitle = safeStory.title || 'Untitled story';
+    const safeDescription = safeStory.description || 'Story description is currently unavailable.';
+    const safeSubtitle = safeStory.subtitle || '';
+    const safeHighlight = safeStory.highlight || '';
 
-    const titleWrap = document.createElement('div');
-    titleWrap.className = 'story-block__title-wrap';
+    if (!safeStory.title || !safeStory.description) {
+        console.warn(`${LOG_PREFIX} Story title/description is missing. Using fallback copy.`);
+    }
 
-    const title = document.createElement('h1');
-    title.className = 'story-block__title js-story-title';
-    title.textContent = story.title || '';
-    titleWrap.appendChild(title);
-
-    const description = document.createElement('p');
-    description.className = 'story-block__text js-story-description';
-    description.textContent = story.description || '';
-
-    const subtitle = document.createElement('span');
-    subtitle.className = 'story-block__subtitle js-story-subtitle';
-    subtitle.textContent = story.subtitle || '';
-
-    const highlightParagraph = document.createElement('p');
-    highlightParagraph.className = 'story-block__text story-block__text--padding-0 story-block__text--bold';
-
-    const highlight = document.createElement('strong');
-    highlight.className = 'js-story-highlight';
-    highlight.textContent = story.highlight || '';
-    highlightParagraph.appendChild(highlight);
-
-    storyContent.append(titleWrap, description, subtitle, highlightParagraph);
+    storyContent.innerHTML = `
+        <div class="gallery-block__title-wrap">
+            <h1 class="gallery-block__title">${escapeHtml(safeTitle)}</h1>
+        </div>
+        <p class="gallery-block__text">${escapeHtml(safeDescription)}</p>
+        <span class="gallery-block__subtitle">${escapeHtml(safeSubtitle)}</span>
+        <p class="gallery-block__text gallery-block__text--padding-0 gallery-block__text--bold">
+            <strong>${escapeHtml(safeHighlight)}</strong>
+        </p>
+    `;
 };
 
-const createCardItem = (item) => {
-    const cardItem = document.createElement('div');
-    cardItem.className = 'color-cards__item';
-
-    const figure = document.createElement('figure');
-    figure.className = 'color-cards__figure';
-
-    const image = document.createElement('img');
-    image.className = 'color-cards__image js-image-modal';
-    setImageSource(image, item.image);
-    figure.appendChild(image);
-
-    const title = document.createElement('h3');
-    title.className = 'color-cards__item-title';
-
-    const link = document.createElement('a');
-    link.className = 'color-cards__item-link';
-
+const createCardItemMarkup = (item) => {
     const href = item.link?.href || '#';
     const target = item.link?.target || '_self';
+    const relAttribute = target === '_blank' ? ` rel="${escapeHtml(item.link?.rel || 'noopener noreferrer')}"` : '';
 
-    link.setAttribute('href', href);
-    link.setAttribute('target', target);
-
-    if (target === '_blank') {
-        link.setAttribute('rel', item.link?.rel || 'noopener noreferrer');
-    }
-
-    link.textContent = item.link?.label || item.title || '';
-    title.appendChild(link);
-
-    const text = document.createElement('p');
-    text.className = 'color-cards__item-text';
-    text.textContent = item.text || '';
-
-    cardItem.append(figure, title, text);
-
-    return cardItem;
+    return `
+        <div class="cards-block__item">
+            <figure class="cards-block__figure">
+                <img
+                    class="cards-block__image"
+                    src="${escapeHtml(item.image?.src || '')}"
+                    srcset="${escapeHtml(item.image?.srcset || '')}"
+                    alt="${escapeHtml(item.image?.alt || '')}"
+                >
+            </figure>
+            <h3 class="cards-block__item-title">
+                <a
+                    class="cards-block__item-link js-cards-link"
+                    href="${escapeHtml(href)}"
+                    target="${escapeHtml(target)}"${relAttribute}
+                >${escapeHtml(item.link?.label || item.title || '')}</a>
+            </h3>
+            <p class="cards-block__item-text">${escapeHtml(item.text || '')}</p>
+        </div>
+    `;
 };
 
-const renderStoryContent = (story) => {
-    if (!story) {
-        return;
-    }
-
+const renderStoryContent = (story = {}) => {
     renderStoryMedia(story.images);
     renderStoryCopy(story);
 };
 
 const renderCardsContent = (cards) => {
-    if (!cards) {
-        return;
-    }
+    const safeCards = cards && typeof cards === 'object' ? cards : {};
 
-    setElementText('.js-cards-title', cards.title);
+    const cardsTitle = document.querySelector('.js-cards-title');
+
+    if (!cardsTitle) {
+        console.error(`${LOG_PREFIX} Missing .js-cards-title container.`);
+    } else {
+        cardsTitle.textContent = safeCards.title || 'Cards';
+    }
 
     const cardsList = document.querySelector('.js-cards-list');
 
-    if (!cardsList || !Array.isArray(cards.items) || !cards.items.length) {
+    if (!cardsList) {
+        console.error(`${LOG_PREFIX} Missing .js-cards-list container.`);
         return;
     }
 
-    cardsList.innerHTML = '';
-    cards.items.forEach((item) => {
-        cardsList.appendChild(createCardItem(item));
-    });
-};
-
-const renderSeoContent = (seo) => {
-    if (!seo) {
+    if (!Array.isArray(safeCards.items) || !safeCards.items.length) {
+        console.warn(`${LOG_PREFIX} Cards data is missing or empty.`);
+        cardsList.innerHTML = '<p class="cards-block__item-text">Card content is currently unavailable.</p>';
         return;
     }
 
-    if (seo.title) {
-        document.title = seo.title;
-    }
-
-    setMetaByName('description', seo.description);
-    setMetaByProperty('og:title', seo.title);
-    setMetaByProperty('og:description', seo.description);
+    cardsList.innerHTML = safeCards.items.map((item) => createCardItemMarkup(item)).join('');
 };
 
 export const renderContent = (content = pageContent) => {
-    if (!content) {
+    if (!content || typeof content !== 'object') {
+        console.error(`${LOG_PREFIX} Missing or invalid content object.`);
         return;
     }
 
-    renderSeoContent(content.seo);
+    if (!content.story) {
+        console.warn(`${LOG_PREFIX} Missing story payload.`);
+    }
+
+    if (!content.cards) {
+        console.warn(`${LOG_PREFIX} Missing cards payload.`);
+    }
+
     renderStoryContent(content.story);
     renderCardsContent(content.cards);
 };

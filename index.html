@@ -12,23 +12,116 @@
 </head>
 <body>
 	<main class="page">
-        <section class="story-block js-section-reveal">
-            <div class="container story-block__container">
-                <div class="story-block__media-grid js-story-media-grid"></div>
-                <div class="story-block__content js-story-content"></div>
+        <section class="gallery-block js-section-reveal">
+            <div class="container gallery-block__container">
+                <div class="gallery-block__media-grid js-gallery-media-grid">
+
+                    <figure class="gallery-block__figure gallery-block__figure--row-span-2">
+                        <img
+                            class="gallery-block__image js-image-modal"
+                            src="./assets/images/wood-fire-boiling-pot.webp"
+                            srcset="./assets/images/wood-fire-boiling-pot.webp 1x, ./assets/images/wood-fire-boiling-pot@2x.webp 2x, ./assets/images/wood-fire-boiling-pot@3x.webp 3x"
+                            alt="Wood Fire Boiling Pot"
+                        >
+                    </figure>
+
+                    <figure class="gallery-block__figure">
+                        <img
+                            class="gallery-block__image js-image-modal"
+                            src="./assets/images/chef-sorting-ingredients.webp"
+                            srcset="./assets/images/chef-sorting-ingredients.webp 1x, ./assets/images/chef-sorting-ingredients@2x.webp 2x, ./assets/images/chef-sorting-ingredients@3x.webp 3x"
+                            alt="Chef Sorting Ingredients"
+                        >
+                    </figure>
+
+                    <figure class="gallery-block__figure">
+                        <img
+                            class="gallery-block__image js-image-modal"
+                            src="./assets/images/egg-doneness-tray.webp"
+                            srcset="./assets/images/egg-doneness-tray.webp 1x, ./assets/images/egg-doneness-tray@2x.webp 2x, ./assets/images/egg-doneness-tray@3x.webp 3x"
+                            alt="Egg Doneness Tray"
+                        >
+                    </figure>
+                </div>
+                <div class="gallery-block__content js-gallery-content">
+                    <div class="gallery-block__title-wrap">
+                        <h1 class="gallery-block__title">What Does Cooking Mean?</h1>
+                    </div>
+                    <p class="gallery-block__text">Is it simply applying heat to a food product? A way of making certain food safe to eat? Or a way to create flavour and make food more appealing? This is just part of what Hervé This, the father of molecular gastronomy, has dedicated his life to finding out. We spoke to him to find out what his experiments have told him. And in the process even discovered the secret to cooking the perfect egg...</p>
+                    <span class="gallery-block__subtitle">The Perfect Egg</span>
+                    <p class="gallery-block__text gallery-block__text--padding-0 gallery-block__text--bold"><strong>Keep water between 67 and 68°C for a flavourful, tender yolk</strong></p>
+                </div>
             </div>
-        </section><!-- end of story-block -->
-        <section class="color-cards js-section-reveal">
-            <div class="container color-cards__container text-center">
-                <div class="color-cards__outer-wrapper">
-                    <div class="color-cards__title-wrap">
-                        <h2 class="color-cards__title js-cards-title"></h2>
+        </section><!-- end of gallery-block -->
+        <section class="cards-block js-section-reveal">
+            <div class="container cards-block__container text-center">
+                <div class="cards-block__outer-wrapper">
+                    <div class="cards-block__title-wrap">
+                        <h2 class="cards-block__title js-cards-title">Taste the Colours</h2>
                     </div>
                 </div>
                 
-                <div class="color-cards__list js-cards-list"></div>
+                <div class="cards-block__list js-cards-list">
+
+                    <div class="cards-block__item">
+                        <figure class="cards-block__figure">
+                            <img
+                                class="cards-block__image"
+                                src="./assets/images/red-glass-spoon.webp"
+                                srcset="./assets/images/red-glass-spoon.webp 1x, ./assets/images/red-glass-spoon@2x.webp 2x, ./assets/images/red-glass-spoon@3x.webp 3x"
+                                alt="Red Glass Spoon"
+                            >
+                        </figure>
+                        <h3 class="cards-block__item-title">
+                            <a
+                                class="cards-block__item-link js-cards-link"
+                                href="https://en.wikipedia.org/wiki/Red"
+                                target="_blank" rel="noopener noreferrer"
+                            >Red</a>
+                        </h3>
+                        <p class="cards-block__item-text">Red foods remind us of berries and soft fruits, so we anticipate a sweet taste.</p>
+                    </div>
+
+                    <div class="cards-block__item">
+                        <figure class="cards-block__figure">
+                            <img
+                                class="cards-block__image"
+                                src="./assets/images/green-glass-spoon.webp"
+                                srcset="./assets/images/green-glass-spoon.webp 1x, ./assets/images/green-glass-spoon@2x.webp 2x, ./assets/images/green-glass-spoon@3x.webp 3x"
+                                alt="Green Glass Spoon"
+                            >
+                        </figure>
+                        <h3 class="cards-block__item-title">
+                            <a
+                                class="cards-block__item-link js-cards-link"
+                                href="https://en.wikipedia.org/wiki/Green"
+                                target="_blank" rel="noopener noreferrer"
+                            >Green</a>
+                        </h3>
+                        <p class="cards-block__item-text">Fresh, zingy green colours are reminiscent of unripe fruit, promising sour or acid flavours</p>
+                    </div>
+
+                    <div class="cards-block__item">
+                        <figure class="cards-block__figure">
+                            <img
+                                class="cards-block__image"
+                                src="./assets/images/white-glass-spoon.webp"
+                                srcset="./assets/images/white-glass-spoon.webp 1x, ./assets/images/white-glass-spoon@2x.webp 2x, ./assets/images/white-glass-spoon@3x.webp 3x"
+                                alt="White Glass Spoon"
+                            >
+                        </figure>
+                        <h3 class="cards-block__item-title">
+                            <a
+                                class="cards-block__item-link js-cards-link"
+                                href="https://en.wikipedia.org/wiki/White"
+                                target="_blank" rel="noopener noreferrer"
+                            >White</a>
+                        </h3>
+                        <p class="cards-block__item-text">White foods evoke memories of salt and salty flavours, driving the expectation of a savoury treat.</p>
+                    </div>
+                </div>
             </div>
-        </section><!-- end of color-cards -->
+        </section><!-- end of cards-block -->
 	</main>
     <script src="dest/js/main.js" defer></script>
 </body>

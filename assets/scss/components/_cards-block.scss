@@ -1,7 +1,7 @@
 @use "../common/helper" as *;
 @use "../common/config" as *;
 
-.color-cards {
+.cards-block {
     &__outer-wrapper {
         display: flex;
         justify-content: center;
@@ -36,7 +36,7 @@
     }
 
     &__item {
-        &:first-child .color-cards__item-title {
+        &:first-child .cards-block__item-title {
             text-transform: uppercase;
         }
 

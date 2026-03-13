@@ -1,7 +1,7 @@
 @use "../common/helper" as *;
 @use "../common/config" as *;
 
-.story-block {
+.gallery-block {
     &__container {
         display: flex;
         align-items: start;
@@ -13,9 +13,9 @@
         }
     }
 
-    &__media-grid { 
-        display: grid; 
-        grid-template-columns: 1fr 1fr; 
+    &__media-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
         gap: $spacer-10;
     }
